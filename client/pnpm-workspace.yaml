@@ -2,3 +2,7 @@ ignoredBuiltDependencies:
   - es5-ext
   - sharp
   - unrs-resolver
+onlyBuiltDependencies:
+  - esbuild
+  - msw
+  - workerd
