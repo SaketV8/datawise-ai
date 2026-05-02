@@ -19,6 +19,28 @@
 
 ## ✅ DataWise in Action
 
+> Pototype Build in Action
+
+> kindly wait for a sec to load the demo...
+
+#### Generating Charts (intercative charts)
+
+<div align="center">
+  <img src="./docs/assets/datawise-chart-gen.gif" alt="DataWise in action">
+</div>
+
+#### Generating PDF Report
+
+<div align="center">
+  <img src="./docs/assets/datawise-pdf-gen.gif" alt="DataWise in action">
+</div>
+
+#### Normal Data Analysis
+
+<div align="center">
+  <img src="./docs/assets/datawise-normal.gif" alt="DataWise in action">
+</div>
+
 ## 🏗️ Architectural Diagram
 
 ```md
@@ -168,7 +190,7 @@ Client runs on **http://localhost:3000**.
 
 ```bash
 # Required for whichever provider you use
-GOOGLE_GENERATIVE_AI_API_KEY=your_gemini_api_key
+NVIDIA_NIM_API_KEY=your_nvidia_nmi_api_key
 # OPENAI_API_KEY=your_openai_api_key
 
 PORT=8787
