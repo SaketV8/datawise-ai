@@ -1,0 +1,26 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js"
+  },
+  "dependencies": {
+    "@ai-sdk/google": "^3.0.67",
+    "@ai-sdk/openai-compatible": "^2.0.45",
+    "@hono/node-server": "^1.19.14",
+    "@openrouter/ai-sdk-provider": "^2.9.0",
+    "ai": "^6.0.173",
+    "dotenv": "^16.6.1",
+    "hono": "^4.12.16",
+    "zod": "^4.4.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.19.17",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3"
+  }
+}
