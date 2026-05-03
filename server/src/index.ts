@@ -12,7 +12,8 @@ const app = new Hono();
 app.use(
   "*",
   cors({
-    origin: "*",
+    // origin: "*",
+    origin: ["https://datawise-ai-three.vercel.app"],
     allowMethods: ["GET", "POST", "PUT", "OPTIONS"],
     allowHeaders: ["Content-Type", "Authorization"],
   }),
