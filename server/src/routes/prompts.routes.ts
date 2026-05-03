@@ -1,5 +1,5 @@
 import { Hono } from "hono";
-import { prompts } from "../prompts";
+import { prompts } from "../prompts.js";
 
 export const promptsRoutes = new Hono();
 

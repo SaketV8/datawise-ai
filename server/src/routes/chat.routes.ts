@@ -6,9 +6,9 @@ import {
   type UIMessage,
 } from "ai";
 
-import { tools } from "../tools";
-import { prompts } from "../prompts";
-import { models } from "../ai-models";
+import { tools } from "../tools.js";
+import { prompts } from "../prompts.js";
+import { models } from "../ai-models.js";
 
 export const chatRoutes = new Hono();
 
