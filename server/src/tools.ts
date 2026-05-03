@@ -1,7 +1,7 @@
 import { tool, generateText, zodSchema } from "ai";
 import { z } from "zod";
-import { prompts } from "./prompts";
-import { models } from "./ai-models";
+import { prompts } from "./prompts.js";
+import { models } from "./ai-models.js";
 
 /**
  * IMPORTANT:
