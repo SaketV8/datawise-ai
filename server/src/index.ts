@@ -3,8 +3,8 @@ import { Hono } from "hono";
 import { cors } from "hono/cors";
 import { serve } from "@hono/node-server";
 
-import { chatRoutes } from "./routes/chat.routes";
-import { promptsRoutes } from "./routes/prompts.routes";
+import { chatRoutes } from "./routes/chat.routes.js";
+import { promptsRoutes } from "./routes/prompts.routes.js";
 
 const app = new Hono();
 
