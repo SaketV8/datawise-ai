@@ -59,6 +59,7 @@ const generatePdfReportInput = zodSchema(
             .describe("1–3 sentence narrative for this section."),
           table: z
             .array(z.record(z.string(), z.any()))
+            .nullable()
             .optional()
             .describe("Optional rows for a table in this section."),
         }),

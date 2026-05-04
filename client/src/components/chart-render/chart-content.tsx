@@ -77,6 +77,8 @@ function SandpackWithLoader({
   containerRef: React.RefObject<HTMLDivElement>;
 }) {
   const [ready, setReady] = useState(false);
+  // const [showSandpackInfo, setShowSandpackInfo] = useState(false);
+  const [showLoader, setShowLoader] = useState(true);
 
   useEffect(() => {
     function handleMessage(e: MessageEvent) {
@@ -102,10 +104,13 @@ function SandpackWithLoader({
       <SandpackPreview
         showNavigator={false}
         showOpenInCodeSandbox={false}
-        showRefreshButton={false}
+        // showRefreshButton={false}
         style={{ height: "100%", width: "100%", flex: "1 1 auto", minWidth: 0 }}
       />
-      {!ready && <ChartLoader />}
+      {/*{!ready && <ChartLoader />}*/}
+      {!ready && showLoader && (
+        <ChartLoader onShowDetails={() => setShowLoader(false)} />
+      )}
     </div>
   );
 }
