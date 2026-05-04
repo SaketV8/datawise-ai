@@ -69,6 +69,8 @@ const generatePdfReportInput = zodSchema(
   }),
 );
 
+type PdfReportInput = z.infer<typeof generatePdfReportInput>;
+
 function stripCodeFences(s: string): string {
   let out = s.trim();
   if (out.startsWith("```")) {
@@ -138,7 +140,7 @@ Generate the App.js code now.`;
       outline: Array<{
         heading: string;
         narrative: string;
-        table?: Array<Record<string, unknown>>;
+        table?: Array<Record<string, unknown>> | null;
       }>;
       executiveSummary: string;
     }) => {
