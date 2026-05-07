@@ -13,7 +13,7 @@ app.use(
   "*",
   cors({
     // origin: "*",
-    origin: ["https://datawise-ai-three.vercel.app", "http://localhost:3000"],
+    origin: ["https://datawise-ai-five.vercel.app/", "http://localhost:3000"],
     allowMethods: ["GET", "POST", "PUT", "OPTIONS"],
     allowHeaders: ["Content-Type", "Authorization"],
   }),
