@@ -49,7 +49,7 @@ export function FileUpload({
       </div>
 
       <label
-        className={`flex cursor-pointer flex-col items-center justify-center rounded-md border-2 border-dashed border-[var(--color-border)] p-6 text-center transition hover:border-[var(--color-accent)] ${
+        className={`flex cursor-pointer flex-col items-center justify-center rounded-md border-2 border-dashed border-(--color-border) p-6 text-center transition hover:border-(--color-accent) ${
           disabled || busy ? 'pointer-events-none opacity-50' : ''
         }`}
       >
@@ -75,7 +75,7 @@ export function FileUpload({
           {loadedTables.map((t) => (
             <li
               key={t.tableName}
-              className="flex items-center justify-between rounded-md border border-[var(--color-border)] bg-[#0e1115] px-2.5 py-1.5"
+              className="flex items-center justify-between rounded-md border border-(--color-border) bg-[#0e1115] px-2.5 py-1.5"
             >
               <div className="min-w-0">
                 <div className="truncate text-xs font-medium">{t.fileName}</div>

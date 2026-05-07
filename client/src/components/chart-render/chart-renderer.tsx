@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Code2, EyeOff, Loader2, Download, Maximize2, X } from "lucide-react";
 import { ChartContent } from "./chart-content";
+import { toast } from "sonner";
 
 type Props = {
   title: string;
@@ -34,7 +35,8 @@ export function ChartRenderer({ title, code }: Props) {
     const iframe = container?.querySelector("iframe");
 
     if (!iframe) {
-      alert("Chart iframe not found");
+      // alert("Chart iframe not found");
+      toast("Chart iframe not found");
       return;
     }
 
@@ -52,7 +54,8 @@ export function ChartRenderer({ title, code }: Props) {
       setIsDownloading(false);
 
       if (e.data.error) {
-        alert(e.data.error);
+        // alert(e.data.error);
+        toast.error(e.data.error);
         return;
       }
 
@@ -74,6 +77,7 @@ export function ChartRenderer({ title, code }: Props) {
       window.removeEventListener("message", handleMessage);
       setIsDownloading(false);
       alert("Download timed out — chart may still be loading");
+      toast.error("Download timed out — chart may still be loading");
     }, 5000);
   }
 
@@ -84,12 +88,6 @@ export function ChartRenderer({ title, code }: Props) {
         <CardHeader className="flex flex-row items-center justify-between border-b py-2 px-3">
           <div className="flex items-center gap-2 text-sm font-medium">
             📊 {title}
-            {/*{!chartReady && (
-              <span className="flex items-center gap-1 text-xs text-muted-foreground">
-                <Loader2 className="h-3 w-3 animate-spin" />
-                warming…
-              </span>
-            )}*/}
           </div>
 
           <div className="flex gap-2">

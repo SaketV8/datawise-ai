@@ -54,7 +54,8 @@ type LoadedTableMeta = {
   sample: Record<string, unknown>[];
 };
 
-function PageInner() {
+// function PageInner() {
+const Page = () => {
   const duck = useDuckDB();
   const [tables, setTables] = useState<LoadedTableMeta[]>([]);
   const [input, setInput] = useState("");
@@ -386,8 +387,10 @@ ${sampleJson}
       </div>
     </>
   );
-}
+};
 
-export default function Page() {
-  return <PageInner />;
-}
+export default Page;
+
+// export default function Page() {
+//   return <PageInner />;
+// }

@@ -4,7 +4,6 @@ import { useEffect, useRef, useState } from "react";
 import { Sandpack } from "@codesandbox/sandpack-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-// import { useSandpackPool } from "@/providers/sandpack-pool";
 import { Download, FileText, Loader2, XCircle } from "lucide-react";
 
 type Props = {
@@ -15,7 +14,6 @@ type Props = {
 };
 
 export function PdfRenderer({ title, filename, code, onComplete }: Props) {
-  // const { pdfReady } = useSandpackPool();
   const [status, setStatus] = useState<"building" | "ready" | "error">(
     "building",
   );
@@ -83,7 +81,7 @@ root.render(<App />);`,
     <>
       <Card className="w-full">
         <CardContent className="flex items-center justify-between px-4 py-3">
-          {/* Left — icon + name */}
+          {/* icon and name */}
           <div className="flex items-center gap-2 min-w-0">
             <FileText className="h-4 w-4 shrink-0 text-muted-foreground" />
             <div className="min-w-0">
@@ -94,7 +92,7 @@ root.render(<App />);`,
             </div>
           </div>
 
-          {/* Right — status / button */}
+          {/* status / button */}
           <div className="shrink-0 ml-4">
             {status === "building" && (
               <Button size="sm" variant="outline" disabled>
@@ -121,7 +119,7 @@ root.render(<App />);`,
         </CardContent>
       </Card>
 
-      {/* Hidden sandbox — runs silently */}
+      {/* Hidden sandbox which runs silently withour showing code */}
       <div
         style={{
           position: "absolute",

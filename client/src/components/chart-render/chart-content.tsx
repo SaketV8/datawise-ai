@@ -1,15 +1,14 @@
 "use client";
 
-import { forwardRef, useEffect, useRef, useState } from "react";
+import { forwardRef } from "react";
 import {
   SandpackProvider,
   SandpackLayout,
-  SandpackPreview,
   SandpackCodeEditor,
 } from "@codesandbox/sandpack-react";
-// import { Loader2 } from "lucide-react";
-import ChartLoader from "./chart-loader";
-// import buildWrapperApp from "./iframe-response";
+import { buildWrapperApp } from "./iframe-response";
+import SandpackWithLoader from "./sandpack-with-loader";
+import escapeHtml from "@/utils/escape-html";
 
 type ChartContentProps = {
   title: string;
@@ -18,106 +17,9 @@ type ChartContentProps = {
   showCode?: boolean;
 };
 
-function escapeHtml(s: string): string {
-  return s.replace(
-    /[&<>"']/g,
-    (c) =>
-      (
-        ({
-          "&": "&amp;",
-          "<": "&lt;",
-          ">": "&gt;",
-          '"': "&quot;",
-          "'": "&#39;",
-        }) as Record<string, string>
-      )[c]!,
-  );
-}
-
-function buildWrapperApp(): string {
-  return `
-import { useEffect } from "react";
-import OriginalApp from "./UserChart";
-
-export default function App() {
-  useEffect(() => {
-    // Signal parent that the chart has actually rendered
-    window.parent.postMessage({ type: 'CHART_READY' }, '*');
-
-    function handleMessage(e) {
-      if (e.data?.type !== 'REQUEST_SVG') return;
-      const svg = document.querySelector('svg');
-      if (!svg) {
-        window.parent.postMessage({
-          type: 'SVG_RESPONSE',
-          requestId: e.data.requestId,
-          error: 'No SVG found'
-        }, '*');
-        return;
-      }
-      const source = new XMLSerializer().serializeToString(svg);
-      window.parent.postMessage({
-        type: 'SVG_RESPONSE',
-        requestId: e.data.requestId,
-        svg: source
-      }, '*');
-    }
-    window.addEventListener('message', handleMessage);
-    return () => window.removeEventListener('message', handleMessage);
-  }, []);
-
-  return <OriginalApp />;
-}
-`;
-}
-
-function SandpackWithLoader({
-  containerRef,
-}: {
-  containerRef: React.RefObject<HTMLDivElement>;
-}) {
-  const [ready, setReady] = useState(false);
-  // const [showSandpackInfo, setShowSandpackInfo] = useState(false);
-  const [showLoader, setShowLoader] = useState(true);
-
-  useEffect(() => {
-    function handleMessage(e: MessageEvent) {
-      // Only mark ready when our wrapper App signals it has mounted
-      if (e.data?.type === "CHART_READY") {
-        setReady(true);
-      }
-    }
-    window.addEventListener("message", handleMessage);
-    return () => window.removeEventListener("message", handleMessage);
-  }, []);
-
-  return (
-    <div
-      style={{
-        position: "relative",
-        height: "100%",
-        width: "100%",
-        flex: "1 1 auto",
-        minWidth: 0,
-      }}
-    >
-      <SandpackPreview
-        showNavigator={false}
-        showOpenInCodeSandbox={false}
-        // showRefreshButton={false}
-        style={{ height: "100%", width: "100%", flex: "1 1 auto", minWidth: 0 }}
-      />
-      {/*{!ready && <ChartLoader />}*/}
-      {!ready && showLoader && (
-        <ChartLoader onShowDetails={() => setShowLoader(false)} />
-      )}
-    </div>
-  );
-}
-
 export const ChartContent = forwardRef<HTMLDivElement, ChartContentProps>(
   function ChartContent({ title, code, fullHeight = false, showCode }, ref) {
-    const innerRef = useRef<HTMLDivElement>(null);
+    // const innerRef = useRef<HTMLDivElement>(null);
 
     const files: Record<string, string> = {
       "/UserChart.js": code,
@@ -151,7 +53,8 @@ root.render(<App />);`,
             }}
           >
             {showCode && <SandpackCodeEditor />}
-            <SandpackWithLoader containerRef={innerRef} />
+            {/*<SandpackWithLoader containerRef={innerRef} />*/}
+            <SandpackWithLoader />
           </SandpackLayout>
         </SandpackProvider>
       </div>

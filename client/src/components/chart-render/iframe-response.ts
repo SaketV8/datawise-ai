@@ -1,4 +1,4 @@
-const buildWrapperApp = () => {
+export const buildWrapperApp = (): string => {
   return `
 import { useEffect } from "react";
 import OriginalApp from "./UserChart";
@@ -10,23 +10,30 @@ export default function App() {
 
     function handleMessage(e) {
       if (e.data?.type !== 'REQUEST_SVG') return;
+
       const svg = document.querySelector('svg');
+
       if (!svg) {
         window.parent.postMessage({
           type: 'SVG_RESPONSE',
           requestId: e.data.requestId,
           error: 'No SVG found'
         }, '*');
+
         return;
       }
+
       const source = new XMLSerializer().serializeToString(svg);
+
       window.parent.postMessage({
         type: 'SVG_RESPONSE',
         requestId: e.data.requestId,
         svg: source
       }, '*');
     }
+
     window.addEventListener('message', handleMessage);
+
     return () => window.removeEventListener('message', handleMessage);
   }, []);
 
@@ -34,5 +41,3 @@ export default function App() {
 }
 `;
 };
-
-export default buildWrapperApp;
